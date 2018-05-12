@@ -2,7 +2,9 @@
  #define __MATRIX_H__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <string>
 
 #define DENSE   0
 #define COO     1
@@ -14,7 +16,7 @@ public:
   Matrix();
   ~Matrix();
 
-  void set_name(string p) { name_ = p; }
+  void set_name(std::string p) { name_ = p; }
   int row() { return row_; }
   int col() { return col_; }
   int nnz() { return nnz_; }
@@ -51,7 +53,7 @@ private:
 
 
 
-  string name_;
+  std::string name_;
   int row_;
   int col_;
   int size_;

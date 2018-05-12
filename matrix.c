@@ -4,7 +4,7 @@ Matrix::Matrix()
 {
   row_ = 0; col_ = 0; size_ = 0; nnz_ = 0;
   rowIdx_ = NULL; colIdx_ = NULL; rowPtr_ = NULL; colPtr_ = NULL;
-  mat = NULL; val = NULL;
+  mat_ = NULL; val_ = NULL;
   inited_ =false; isDENSE_ = false; isCSR_ = false; isCOO_ = false; isCSC_ = false;
 }
 
@@ -71,7 +71,7 @@ void Matrix::input_from_fp(int format, FILE *& fp)
 void Matrix::output_to_fp(int format, FILE *& fp)
 {
   if (!inited_) {
-    printf("error: outputing empty matrix %s\n", name.c_str());
+    printf("error: outputing empty matrix %s\n", name_.c_str());
     exit(1);
   }
   switch (format) {
@@ -115,7 +115,7 @@ void Matrix::convert_to_dense()
 {
   if (isDENSE_) return;
   if (!inited_) {
-    printf("error: converting empty matrix %s to dense format\n", name.c_str());
+    printf("error: converting empty matrix %s to dense format\n", name_.c_str());
     exit(1);
   }
   convert_to_coo();
@@ -126,7 +126,7 @@ void Matrix::convert_to_csr()
 {
   if (isCSR_) return;
   if (!inited_) {
-    printf("error: converting empty matrix %s to csr format\n", name.c_str());
+    printf("error: converting empty matrix %s to csr format\n", name_.c_str());
     exit(1);
   }
   if (isCOO_) {
@@ -142,7 +142,7 @@ void Matrix::convert_to_coo()
 {
   if (isCOO_) return;
   if (!inited_) {
-    printf("error: converting empty matrix %s to coo format\n", name.c_str());
+    printf("error: converting empty matrix %s to coo format\n", name_.c_str());
     exit(1);
   }
   convert_to_csr();
@@ -166,7 +166,7 @@ void Matrix::dense_to_csr()
   for (int i = 0, cnt = 0, nnz_cnt = 0; i < row_; ++i) {
     for (int j = 0; j < col_; ++j, ++cnt) {
       if (mat_[cnt] != 0.0) {
-        val[nnz_cnt] = mat_[cnt];
+        val_[nnz_cnt] = mat_[cnt];
         colIdx_[nnz_cnt] = mat_[cnt];
         ++nnz_cnt;
       }

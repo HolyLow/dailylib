@@ -29,5 +29,5 @@ void MatrixCouple::output_to_file(char *filename, int format_a, int format_b)
   }
   a.output_to_fp(format_a, fp);
   b.output_to_fp(format_b, fp);
-  flose(fp);
+  fclose(fp);
 }
