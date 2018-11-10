@@ -1,6 +1,12 @@
 #ifndef COMMON_CUDA_H_
  #define COMMON_CUDA_H_
 
+#include <cublas_v2.h>
+#include <cusparse.h>
+#include <cuda.h>
+#include <cuda_runtime.h>
+#include <cuda_runtime_api.h>
+#include <cudnn.h>
 
 #define CUDA_CHECK(status_) do {                                              \
     cudaError_t status = (status_);                                           \
